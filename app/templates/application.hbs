@@ -1,3 +1,9 @@
-<h2 id="title">Welcome to Ember</h2>
+{{#each model as |post|}}
+  <div class="public-post">
+    {{post.title}}
+  </div>
+{{else}}
+  No Public Posts Found!
+{{/each}}
 
 {{outlet}}
