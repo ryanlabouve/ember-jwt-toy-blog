@@ -1,9 +1,29 @@
-{{#each model as |post|}}
-  <div class="public-post">
-    {{post.title}}
+<div class="container">
+  <div class="row header">
+    <div class="col-sm-6">
+      <h1>Posts</h1>
+    </div>
+    <div class="col-sm-6">
+      {{current-user}}
+    </div>
   </div>
-{{else}}
-  No Public Posts Found!
-{{/each}}
 
-{{outlet}}
+  <div class="row body">
+    <div class="col-sm-6">
+      {{public-posts}}
+    </div>
+    <div class="col-sm-6">
+      {{private-posts}}
+    </div>
+  </div>
+
+  {{#each model as |post|}}
+    <div class="public-post">
+      {{post.title}}
+    </div>
+  {{else}}
+    No Public Posts Found!
+  {{/each}}
+
+  {{outlet}}
+</div>
