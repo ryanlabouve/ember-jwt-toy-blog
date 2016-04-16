@@ -10,20 +10,13 @@
 
   <div class="row body">
     <div class="col-sm-6">
-      {{public-posts}}
+      {{public-posts posts=model}}
     </div>
     <div class="col-sm-6">
       {{private-posts}}
     </div>
   </div>
 
-  {{#each model as |post|}}
-    <div class="public-post">
-      {{post.title}}
-    </div>
-  {{else}}
-    No Public Posts Found!
-  {{/each}}
 
   {{outlet}}
 </div>

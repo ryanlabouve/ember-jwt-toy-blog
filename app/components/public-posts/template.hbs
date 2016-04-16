@@ -1,0 +1,12 @@
+<div class="list-group-item">
+  <div class="lead">Public Posts</div>
+</div>
+{{#each posts as |post|}}
+  {{blog-post
+    title=post.title
+    body=post.body
+    testClass='public-post'
+    }}
+{{else}}
+  No Public Posts Found!
+{{/each}}

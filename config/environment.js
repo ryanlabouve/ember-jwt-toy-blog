@@ -36,7 +36,7 @@ module.exports = function(environment) {
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
-    ENV.host = 'http://localhost:3000';
+    ENV.host = '';
     ENV['ember-cli-mirage'] = {
       enabled: true
     };
