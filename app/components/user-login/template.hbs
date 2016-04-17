@@ -1,4 +1,8 @@
 <div id="loginForm">
+  {{#if loginError}}
+    <div class="login-err alert alert-error">Bad deets dude.</div>
+  {{/if}}
+
   {{input
     value=identification
     class="username-field"}}
@@ -9,7 +13,7 @@
   <a
     href="/login"
     class="login-btn"
-    onclick={{action "login"}}
+    {{action "login"}}
     >
     Login
   </a>

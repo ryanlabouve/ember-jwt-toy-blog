@@ -3,13 +3,20 @@ import Base from 'ember-simple-auth/authenticators/base';
 import config from '../config/environment';
 
 export default Base.extend({
-  tokenEndpoint: `${config.host}/knock/auth`,
+  tokenEndpoint: `${config.host}/knock/auth_token`,
   restore(data) {
-    debugger;
+    // debugger;
+    return new Ember.RSVP.Promise(function(resolve, reject) {
+      if (!Ember.isEmpty(data.token)) {
+        resolve(data);
+      } else {
+        reject();
+      }
+    });
   },
 
   authenticate(creds) {
-    debugger;
+    // debugger;
     const { identification, password } = creds;
     // easier way to do this
     // look at esa source
@@ -18,21 +25,22 @@ export default Base.extend({
         url: this.tokenEndpoint,
         type: 'POST',
         data: JSON.stringify({
-          test: '1234',
-          email: identification,
-          password
+          auth: {
+            email: identification,
+            password
+          }
         }),
         contentType: 'application/json',
         dataType: 'json'
       }).then(function(response) {
-        debugger;
+        // debugger;
         Ember.run(function() {
           resolve({
             token: response.jwt
           });
         });
       }, function error(xhr, status, error) {
-        debugger;
+        // debugger;
         const response = xhr.responseText;
         Ember.run(function() {
           reject(response);
@@ -42,6 +50,6 @@ export default Base.extend({
   },
 
   invalidate(data) {
-    debugger;
+    return Ember.RSVP.resolve();
   }
 });

@@ -5,6 +5,7 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
   actions: {
     login() {
+      this.set('loginError', false);
       let {
         identification,
         password
@@ -13,12 +14,12 @@ export default Ember.Component.extend({
         'password');
 
         this.get('session').authenticate('authenticator:knockjwt',
-                                         {
-                                           identification,
-                                           password
-                                         }).catch((error) => {
-console.log('failzzzzzzzzz');
-                                         });
+          {
+            identification,
+            password
+          }).catch((error) => {
+            this.set('loginError', true);
+          });
     }
   }
 });

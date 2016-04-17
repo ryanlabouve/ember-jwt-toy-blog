@@ -23,6 +23,13 @@ module.exports = function(environment) {
     enabled: false
   };
 
+  ENV['simple-auth'] = {
+    store: 'simple-auth-session-store:local-storage',
+    authorizer: 'authorizer:knockjwt',
+    crossOriginWhiteList: ['http://localhost:3000'],
+    routeAfterAuthentication: '/'
+  }
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -33,6 +40,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'test') {
+    ENV['simple-auth'] = {
+      store: 'simple-auth-session-store:ephemeral-storage'
+    }
     // Testem prefers this...
     ENV.baseURL = '/';
     ENV.locationType = 'none';
